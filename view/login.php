@@ -30,7 +30,7 @@
 				data: "userName="+userName+"&password="+password,
 				success: function(data) {					
 					if($.trim(data) == "OK"){
-						window.location.href="home";
+						window.location.href="view/home.php";
 					} else{
 						$("#ajax_loader_container").html("");						
 						$("#login-container").show();

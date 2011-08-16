@@ -9,5 +9,9 @@ class Login extends FastModel{
 		
 	}
 	
+	public static function getByUserName($userName) {
+		return self::where(array('UserName' => '=='.str_replace("@","\@",$userName)), true);
+	}
+	
 }
 ?>
