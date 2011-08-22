@@ -16,11 +16,14 @@ Class LoginCotroller{
 		}
 		
 		// get login
-		FilemakerDB::setup("174.3.224.247", "CSISched", "Etherpros", "M3x1c0");
-		$login = Login::getByUserName($userName);
+		FilemakerDB::setup("174.3.224.247", "CSISched", "webuser", "webpassword");
+		try{
+			$login = Login::getByUserName($userName);
+		}catch (Exception $ex ){}		
+		ob_end_clean();
 		
 		// if login couldn't be found, break.
-		if( empty($login) || $login -> UserName() != $userName) {
+		if( empty($login) || $login -> UserName != $userName) {
 			echo "Wrong Username/Email and password combination.";
 			return;
 		}
@@ -36,22 +39,11 @@ Class LoginCotroller{
 	}
 	
 	/** Performs actual login with login object **/
-	function login($login, $mlsSession=null) {
+	function login($login) {
+		$login -> Password = "";
 		$session = Session::getInstance();
 		// Set session login object
 		$session->setUserLogin($login);
-			
-		// Otherwise, if information is valid:
-		$loginID = $session -> getUserLogin() -> getLoginID();
-		$accountID = $session -> getUserLogin() -> getAccountID();
-	
-		
-		if($mlsSession == null) {
-			// Create LMS Session.
-			$mlsSession = MlsSession::createSession($loginID);
-		}
-		// Set logo on LMS Session.		
-		$session -> setMlsSession($mlsSession);	
 	}
 	
 }
