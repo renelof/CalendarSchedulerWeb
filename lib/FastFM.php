@@ -498,6 +498,9 @@ class FastModel {
 		$query = new FilemakerQuery($layout);
 		if($firstOnly) {			
 			$record = $query -> findFirst($criteria) -> getFirstRecord();
+			if ( $record == null ){
+				return null;
+			}
 			// return unserialized object
 			return self::unserializer($record);
 		}else{

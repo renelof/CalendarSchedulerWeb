@@ -164,7 +164,7 @@ class Session
         {
             return $_SESSION[self::USER_LOGIN];
         }else{	
-        	header('Location: security/loginRequired');
+        	return null;
         }
 	}
 

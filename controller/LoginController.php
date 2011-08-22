@@ -22,6 +22,7 @@ Class LoginCotroller{
 		}catch (Exception $ex ){}		
 		ob_end_clean();
 		
+		
 		// if login couldn't be found, break.
 		if( empty($login) || $login -> UserName != $userName) {
 			echo "Wrong Username/Email and password combination.";

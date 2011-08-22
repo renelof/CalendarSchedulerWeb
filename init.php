@@ -1,4 +1,5 @@
 <?php
+define('E_LEVEL', E_ERROR | E_PARSE);
 // Official Filemaker PHP API
 require_once '/lib/FileMaker.php';
 // FastFM Filemaker ORM
