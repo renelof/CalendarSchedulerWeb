@@ -36,7 +36,7 @@ if ( empty( $session ) || empty( $userLogin ) ){
 <?php
 } else{	
 ?>
-<div id="flashplayer" style="width: 1024px;height: 700px;"></div>
+<div id="flashplayer" style="width: 1150px;height: 850px;"></div>
 <?php
 } 
 ?>

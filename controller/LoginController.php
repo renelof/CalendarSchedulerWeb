@@ -18,33 +18,33 @@ Class LoginCotroller{
 		// get login
 		FilemakerDB::setup("174.3.224.247", "CSISched", "webuser", "webpassword");
 		try{
-			$login = Login::getByUserName($userName);
+			$contractor = Contractor::getByEmail($userName);
 		}catch (Exception $ex ){}		
 		ob_end_clean();
 		
 		
 		// if login couldn't be found, break.
-		if( empty($login) || $login -> UserName != $userName) {
-			echo "Wrong Username/Email and password combination.";
+		if( empty($contractor) || $contractor -> Email != $userName) {
+			echo "Wrong Email and password combination.";
 			return;
 		}
 		
 		// if password is invalid, break
-		if ( $login -> Password != $password) {
-			echo "Wrong Username/Email and password combination.";
+		if ( $contractor -> Password != $password) {
+			echo "Wrong Email and password combination.";
 			return;
 		}
 		
-		self::login($login);
+		self::login($contractor);
 		echo "OK";
 	}
 	
 	/** Performs actual login with login object **/
-	function login($login) {
-		$login -> Password = "";
+	function login($contractor) {
+		$contractor -> Password = "";
 		$session = Session::getInstance();
 		// Set session login object
-		$session->setUserLogin($login);
+		$session->setUserLogin($contractor);
 	}
 	
 }
